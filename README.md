@@ -1,18 +1,17 @@
 # vue-jstree
 
-[![npm](https://img.shields.io/npm/dt/vue-jstree.svg?style=flat-square)](https://github.com/zdy1988/vue-jstree)
+[![npm](https://www.npmjs.com/package/vue-el-table)
 
 [English](./README.md)/[中文](./README-CN.md)
 
 ##  Introduction
 
-A tree plugin for vue2
+A table p ugin for vue2
 
-<img src="./pic.png" width="100%" align=center />
+
 
 ##  DEMO
 
-[http://zdy1988.github.io/vue-jstree](http://zdy1988.github.io/vue-jstree)
 
 ##  NPM
 
@@ -223,5 +222,3 @@ more elegant:
 ## License
 
 Licensed under the [MIT license](https://opensource.org/licenses/mit-license.php).
-
-Thanks For [jstree](https://github.com/vakata/jstree)'s UI

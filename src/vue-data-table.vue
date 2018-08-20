@@ -73,6 +73,15 @@
                             label: '头像',
                             show: true,
                             showTips: true,
+                            image: {
+                                style: {
+                                    border: '1px solid red',
+                                    borderRadius: '4px',
+                                    height: '100px',
+                                    width: '100px'
+                                }
+
+                            },
                             noneStr: '没有数据'
 
                         }
