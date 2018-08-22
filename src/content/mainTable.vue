@@ -140,6 +140,8 @@
         this.selectConfig.allSelectChangeHandle(selection)
       },
       sortFunc(a, b) {
+
+        //TODO 还没有写完每一列的排序函数如何暴露在外面
         console.log(a, b, '哈哈哈')
       }
     },

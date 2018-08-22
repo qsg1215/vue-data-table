@@ -16,206 +16,190 @@ A table p ugin for vue2
 ##  NPM
 
 ```html
-    npm install vue-jstree
+    npm install vue-el-table
 ```
 
 ##  ES6
 
 ```html
-    import VJstree from 'vue-jstree'
-    
-    new Vue({
-      components: {
-        VJstree
-      }
-    })
-```
 
-##  Setup
-
-```html
-    npm install
-    npm run dev
-```
-
-## Usage
-
-```html
-    <v-jstree :data="data" show-checkbox multiple allow-batch whole-row @item-click="itemClick"></v-jstree>
-    
-    new Vue({
-      data: {
-        data: [
-          {
-            "text": "Same but with checkboxes",
-            "children": [
-              {
-                "text": "initially selected",
-                "selected": true
-              },
-              {
-                "text": "custom icon",
-                "icon": "fa fa-warning icon-state-danger"
-              },
-              {
-                "text": "initially open",
-                "icon": "fa fa-folder icon-state-default",
-                "opened": true,
-                "children": [
-                  {
-                    "text": "Another node"
-                  }
-                ]
-              },
-              {
-                "text": "custom icon",
-                "icon": "fa fa-warning icon-state-warning"
-              },
-              {
-                "text": "disabled node",
-                "icon": "fa fa-check icon-state-success",
-                "disabled": true
-              }
-            ]
-          },
-          {
-            "text": "Same but with checkboxes",
-            "opened": true,
-            "children": [
-              {
-                "text": "initially selected",
-                "selected": true
-              },
-              {
-                "text": "custom icon",
-                "icon": "fa fa-warning icon-state-danger"
-              },
-              {
-                "text": "initially open",
-                "icon": "fa fa-folder icon-state-default",
-                "opened": true,
-                "children": [
-                  {
-                    "text": "Another node"
-                  }
-                ]
-              },
-              {
-                "text": "custom icon",
-                "icon": "fa fa-warning icon-state-warning"
-              },
-              {
-                "text": "disabled node",
-                "icon": "fa fa-check icon-state-success",
-                "disabled": true
-              }
-            ]
-          },
-          {
-            "text": "And wholerow selection"
-          }
-        ]
-      },
-      methods: {
-        itemClick (node) {
-          console.log(node.model.text + ' clicked !')
+//局部注册
+<template>
+    <div >
+        <VueDataTable :config="config" ></VueDataTable>
+    </div>
+</template>
+<script>
+    import VueDataTable from './index.vue'
+    export default {
+        name: 'vue-data-table',
+        components: {VueDataTable},
         }
-      }
-    })
-```
+</script>
 
-## API
+//全局注册
+new Vue({
+  components: {
+    VueElTable
+  }
+})
 
-| Props        | Type           | Default  |  Describe  |
-| ------------- |:-------------:|:-----:|:--------------------------------------------------------|
-| data      | Array |  |  set tree data  |
-| size      | String      |   |  set tree item size , value : 'large' or '' or ''small' |
-| show-checkbox | Boolean      |    false |  set it show checkbox |
-| allow-transition | Boolean      |    true | allow use transition animation  |
-| whole-row | Boolean      |    false | use whole row state |
-| no-dots | Boolean      |    false | show or hide dots |
-| collapse | Boolean      |    false |  set all tree item collapse state |
-| multiple | Boolean      |    false |  set multiple selected tree item  |
-| allow-batch | Boolean      |    false | in multiple choices. allow batch select  |
-| text-field-name | String      |    'text' |  set tree item display field |
-| value-field-name | String      |    'value' |  set tree item value field |
-| children-field-name | String      |    'children' |  set tree item children field |
-| item-events | Object      |    {} |  register any event to tree item, [example](https://github.com/zdy1988/vue-jstree/blob/master/App.vue)  |
-| async | Function      |     |  async load callback function , if node is a leaf ,you can set 'isLeaf: true' in data  |
-| loading-text | String      |    'Loading' |  set loading text |
-| draggable | Boolean      |    false |  set tree item can be dragged , selective drag and drop can set 'dragDisabled: true' and 'dropDisabled: true' , all default value is 'false' |
-| drag-over-background-color | String | '#C9FDC9' |  set drag over background color |
-| klass | String      |     |  set append tree class |
-
-## Methods in node.model
-
-| Method        | Params        |
-| ------------- |:-------------:|
-| addChild      | (object) newDataItem |
-| addAfter      | (object) newDataItem, (object) selectedNode |
-| addBefore     | (object) newDataItem, (object) selectedNode |
-| openChildren  |  |
-| closeChildren  |  |
-
-## Event
-
-**@item-click(node, item, e)**
-
-**@item-toggle(node, item, e)**
-
-**@item-drag-start(node, item, e)**
-
-**@item-drag-end(node, item, e)**
-
-**@item-drop-before(node, item, draggedItem, e)**
-
-**@item-drop(node, item, draggedItem, e)**
-
-**node** : current node vue object
-
-**item** : current node data item object
-
-**e** : event
-
-## Data Item Optional Properties
-
-| Name        | Type           | Default  | Describe  |
-| ------------- |:-------------:| -----:|:----------------------------------------------|
-| icon      | String      |   | custom icon css class |
-| opened | Boolean      |    false | set leaf opened |
-| selected | Boolean      |    false | set node selected |
-| disabled | Boolean      |    false | set node disabled |
-| isLeaf | Boolean      |    false | if node is a leaf , set true can hide '+' |
-| dragDisabled | Boolean      |    false |  selective drag |
-| dropDisabled | Boolean      |    false |  selective drop |
-
-## Custom Item Example
-
-```
-<v-jstree :data="data">
-  <template scope="_">
-    <div style="display: inherit; width: 200px" @click.ctrl="customItemClickWithCtrl">
-      <i :class="_.vm.themeIconClasses" role="presentation" v-if="!_.model.loading"></i>
-      {{_.model.text}}
-      <button style="border: 0px; background-color: transparent; cursor: pointer;" @click="customItemClick(_.vm, _.model, $event)"><i class="fa fa-remove"></i></button>
-    </div>
-  </template>
-</v-jstree>
 
 ```
 
-more elegant:
-							
+```配置对象
+ config: {
+                    select: {
+                      // 是否支持选择项
+                      status: true,
+                      // 选中项改变 事件回调
+                      rowSelectChangeHandle(selectedRow, row) {
+                         console.log(selectedRow, row, '子组件来得数据')
+                      },
+
+                      // 全选事件回调
+                      allSelectChangeHandle(selectedRow) {
+                        console.log(selectedRow, '子组件来得数据')
+                      }
+                    },
+                     // 表格数据
+                    tableData: [
+                    {
+                        name:'chen',
+                        age: 12,
+                        birthday: 1534956821,
+                        rich: 3,
+                        avtar: 'https://myitsky.com/eror.jpg',
+                        address: {
+                          lat: '123456'
+                        }
+                    },
+                    {
+                        name:'chen1',
+                        age: 13,
+                        birthday: 1534956934,
+                        rich: 4,
+                        avtar: 'https://myitsky.com/eror.jpg',
+                        address: {
+                           lat: '123456'
+                        }
+                    }
+                    ],
+                      // 表格字段配置
+                    tableFile: [
+                        {
+                            prop: 'name',  //字段名称,
+                            label: '姓名', //表格标题
+                            show: true,  // 是否展示
+                            showTips: true,  // 超出列宽时是否show tips
+                            noneStr: '没有数据',  //子段不存在填充的内容
+                            filter(value, rowData ){  // 自定义填充内容, 支持返回HTML结构
+                                return 'hello' +  rowData.age
+                            }
+
+                        },
+                        {
+                            prop: 'address.lat', // 多级属性支持
+                            label: '纬度',
+                            show: true,
+                            price: true,
+                            showTips: true,
+                            noneStr: '没有数据'
+
+                        },
+                        {
+                            prop: 'age',
+                            label: '年龄',
+                            show: true,
+                            showTips: true,
+                            noneStr: '没有数据',
+                            sort: {
+                              order: 'desc'  // 排序
+                            }
+
+                        },
+                        {
+                            prop: 'birthday',
+                            label: '生日',
+                            show: true,
+                            showTips: true,
+                            noneStr: '没有数据',
+                            time: {
+                              formate: 'YYYY-MM-DD HH:mm' //时间个话可以配置格式,不设格式时,设置value 为true { time: true }
+                            },
+                            sort: {
+                                order: 'desc',
+                                sortHandle(a, b){
+                                  return -1
+                                }
+                             }
+
+                        },
+                        {
+                            prop: 'rich',
+                            label: '财富',
+                            show: true,
+                            price: true,
+                            showTips: true,
+                            noneStr: '没有数据'
+
+                        },
+                        {
+                            prop: 'avtar',
+                            label: '头像',
+                            show: true,
+                            showTips: true,
+                            image: {
+                                style: {
+                                    border: '1px solid red',
+                                    borderRadius: '4px',
+                                    height: '100px',
+                                    width: '100px'
+                                },
+                                //图片个话可以配置行内样式,不设格式时,设置value 为true { image: true }
+
+                            },
+                            noneStr: '没有数据'
+
+                        }
+                    ],
+                    operationBtn: [
+                        {
+                            icon: 'el-icon-edit',  //图标 ,支持iconfont
+                            typeColor: 'primary',  //button 类型
+                            value: '测试',  //button 文案
+                            handler(rowData) {
+                                console.log(rowData)  //事件回调
+                            }
+                        },
+                        {
+                            icon: 'el-icon-delete',
+                            typeColor: 'danger',
+                            value: '删除',
+                            handler(rowData) {
+                                console.log(rowData)
+                            }
+                        }
+                    ],
+                    searchConfig: {
+                        searchplaceHolder: '请输入关键字', //搜索栏的placeholder
+                        icon: 'el-icon-search', //搜索栏图标
+                        text: '搜索', //搜索文案
+                        keyWords: '',
+                        handle(keyWords, tableData){
+                            console.log(keyWords, tableData)  //搜索点击事件回调
+                        }
+                    },
+                    pingation:{
+                        handle(data){
+                           console.log(data, '分页数据') //分页事件回调
+                        },
+                        layout: ['total', 'sizes', 'prev', 'pager', 'next', 'jumper']   //分页样式
+                    }
+                  }
+                }
 ```
-<v-jstree :data="data">
-  <template scope="_">
-    <div style="display: inherit; width: 200px" @click.ctrl="customItemClickWithCtrl" @click.exact="customItemClick(_.vm, _.model, $event)">
-    <i :class="_.vm.themeIconClasses" role="presentation" v-if="!_.model.loading"></i>
-    {{_.model.text}}
-    </div>
-  </template>
-</v-jstree>
-```
+
 
 **scope** be replaced in the **vue@2.5.0+** , over **vue@2.5.0+** use **slot-scope**
 
