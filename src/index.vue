@@ -13,6 +13,7 @@
             </div>
         </div>
         <TableArea
+                :selectConfig="select"
                 :tableData="tableData"
                 :tableFile="tableFile"
                 :select="select"

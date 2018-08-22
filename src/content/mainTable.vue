@@ -5,11 +5,14 @@
       :data="newTableData"
       stripe
       border
+      @select="selectHandle"
+      @select-all="selectAllHandle"
       v-loading="loading"
       :row-class-name="tableRowClassName"
       :element-loading-text="tips"
       style="width: 100%">
         <el-table-column
+                v-if="selectConfig.status"
                 type="selection"
                 label="全选"
                 width="55">
@@ -19,6 +22,8 @@
         v-for="(item,index) in tableFile"
         v-if="item.show"
         :key="index"
+        :sortable="Boolean(item.sort)"
+        :sort-method="sortFunc"
         :label="item.label"
         :show-overflow-tooltip="item.showTips"
         :width="item.width|| 'auto' ">
@@ -43,6 +48,7 @@
 
 </template>
 <script>
+  import moment from 'moment'
   export default {
       props: {
           tabType: String,
@@ -61,7 +67,8 @@
               default: function () {
                   return '努力加载中'
               }
-          }
+          },
+        selectConfig: Object
       },
     data() {
       return {
@@ -102,7 +109,8 @@
 
           // 时间格式化
           if (tableCloumConfig.time) {
-              return '处理后的时间' + dealTableCloumResult
+              let format = tableCloumConfig.time.formate ? tableCloumConfig.time.formate: 'YYYY-MM-DD HH:mm:ss'
+              return  moment(dealTableCloumResult * 1000).format(format)
           }
 
           // 价格格式化
@@ -117,13 +125,22 @@
          return dealTableCloumResult
      },
 
-
       tableRowClassName({ row, rowIndex }) {
         if (row.isOverTime === 1) {
           return 'success-row';
         } else {
           return '';
         }
+      },
+
+      selectHandle(selection, row) {
+        this.selectConfig.rowSelectChangeHandle(selection, row)
+      },
+      selectAllHandle(selection) {
+        this.selectConfig.allSelectChangeHandle(selection)
+      },
+      sortFunc(a, b) {
+        console.log(a, b, '哈哈哈')
       }
     },
     computed: {

@@ -15,7 +15,8 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "element-ui": "^2.4.6"
+    "element-ui": "^2.4.6",
+    "moment": "^2.22.2"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",

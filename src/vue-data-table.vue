@@ -14,22 +14,34 @@
         data() {
             return {
                 config: {
-                    select: true,
+                    select: {
+                      // 是否支持选择项
+                      status: true,
+                      // 选中项改变 事件回调
+                      rowSelectChangeHandle(selectedRow, row) {
+                         console.log(selectedRow, row, '子组件来得数据')
+                      },
+
+                      // 全选事件回调
+                      allSelectChangeHandle(selectedRow) {
+                        console.log(selectedRow, '子组件来得数据')
+                      }
+                    },
                     tableData: [
-                        {
-                            name:'chen',
-                            age: '12',
-                            birthday: 1534487199,
-                            rich: 3,
-                            avtar: 'https://myitsky.com/eror.jpg'
-                        },
-                        {
-                            name:'chen1',
-                            age: '13',
-                            birthday: 1534487199,
-                            rich: 4,
-                            avtar: 'https://myitsky.com/eror.jpg'
-                        },
+                    {
+                        name:'chen',
+                        age: 12,
+                        birthday: 1534956821,
+                        rich: 3,
+                        avtar: 'https://myitsky.com/eror.jpg'
+                    },
+                    {
+                        name:'chen1',
+                        age: 13,
+                        birthday: 1534956934,
+                        rich: 4,
+                        avtar: 'https://myitsky.com/eror.jpg'
+                    }
                     ],
                     tableFile: [
                         {
@@ -48,7 +60,10 @@
                             label: '年龄',
                             show: true,
                             showTips: true,
-                            noneStr: '没有数据'
+                            noneStr: '没有数据',
+                            sort: {
+                              order: 'desc'
+                            }
 
                         },
                         {
@@ -56,7 +71,16 @@
                             label: '生日',
                             show: true,
                             showTips: true,
-                            noneStr: '没有数据'
+                            noneStr: '没有数据',
+                            time: {
+                              formate: 'YYYY-MM-DD HH:mm'
+                            },
+                            sort: {
+                                order: 'desc',
+                                sortHandle(a, b){
+                                  return -1
+                                }
+                             }
 
                         },
                         {
@@ -107,7 +131,7 @@
                     searchConfig: {
                         searchplaceHolder: '请输入关键字',
                         icon: 'el-icon-search',
-                        text: '搜搜',
+                        text: '搜索',
                         keyWords: '',
                         handle(keyWords, tableData){
                             console.log(keyWords, tableData)
