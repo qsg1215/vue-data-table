@@ -9,7 +9,7 @@
         name: 'vue-data-table',
         components: {VueDataTable},
         props: {
-
+          config: Object
         },
         data() {
             return {

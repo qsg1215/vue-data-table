@@ -1,12 +1,10 @@
-# vue-jstree
+#这个是一个基于ElementUI 2.4.2 和Vue 2.0 的table组件
 
-[![npm](https://www.npmjs.com/package/vue-el-table)
-
-[English](./README.md)/[中文](./README-CN.md)
+## contact me at weichat qsg1215
 
 ##  Introduction
 
-A table p ugin for vue2
+
 
 
 
