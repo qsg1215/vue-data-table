@@ -20,5 +20,6 @@
 
 <style>
     #app {
+        backgroundColor: 'red'
     }
 </style>
