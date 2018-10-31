@@ -8,7 +8,7 @@
 
 
 
-##  DEMO
+##  DEMO 远程编辑
 
 
 ##  NPM
