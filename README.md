@@ -8,7 +8,7 @@
 
 
 
-##  DEMO dev1
+##  DEMO dev2
 
 
 ##  NPM
